@@ -37,13 +37,13 @@ This is a full stack chat application consisting of a frontend built with Vite R
 
     
 
-3. Set up environment variables:
+4. Set up environment variables:
     Create a `.env` file in the project root and add your  keys:
     ```
      Follow up .env.example file
     ```
 
-4. Start the project:
+5. Start the project:
     ```bash
     cd client
     npm run dev
