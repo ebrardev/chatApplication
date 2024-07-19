@@ -47,7 +47,7 @@ This is a full stack chat application consisting of a frontend built with Vite R
     ```bash
     cd client
     npm run dev
-    # cd server
+     cd server
   npm start
     ```
 
