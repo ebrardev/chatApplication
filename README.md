@@ -48,7 +48,7 @@ This is a full stack chat application consisting of a frontend built with Vite R
     cd client
     npm run dev
      cd server
-  npm start
+     npm start
     ```
 
     The application will be running at `http://localhost:5173` in your browser.
