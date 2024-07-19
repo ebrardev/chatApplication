@@ -26,7 +26,7 @@ This is a full stack chat application consisting of a frontend built with Vite R
     yarn install
     ```
 
-    3. Install the necessary dependencies for server:
+ 3. Install the necessary dependencies for server:
     ```bash
     npm install
     # or
