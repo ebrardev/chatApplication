@@ -7,6 +7,8 @@ const Chat = () => {
   const [currentMessage, setCurrentMessage] = useState('');
   const [messageList, setMessageList] = useState([]);
 
+
+
   const sendMessage = () => {
     if (currentMessage !== '') {
       const messageData = {
@@ -70,3 +72,4 @@ const Chat = () => {
 };
 
 export default Chat;
+
