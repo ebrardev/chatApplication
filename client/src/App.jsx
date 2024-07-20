@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
 import Waiting from './Components/Waiting/Waiting';
 import Chat from './Components/Chat/Chat';
+import "./App.css"
 
 function App() {
   return (

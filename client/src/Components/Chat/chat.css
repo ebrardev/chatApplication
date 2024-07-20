@@ -5,13 +5,12 @@
     display: flex;
     flex-direction: column;
     height: 50vh;
-    width: 75vh;
  
     border-radius: 8px;
   }
   
   .chat-header {
-    background-color: #007bff;
+    background-image: linear-gradient(to bottom, #0e0f0e, #222222, #353636, #4a4a4b, #606060);
     color: white;
     padding: 10px;
     text-align: center;
@@ -23,7 +22,7 @@
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    background-color: #f1f1f1;
+    background-image: linear-gradient(to bottom, #0e0f0e, #222222, #353636, #4a4a4b, #606060);
   }
   
   .message-container {
