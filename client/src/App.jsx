@@ -1,17 +1,18 @@
 import { useState } from 'react'
 
 import './App.css'
-import Chat from './Components/Chat'
+
+import Waiting from './Components/Waiting/Waiting'
 
 function App() {
 
 
   return (
-    <>
+    
       <div className="container">
-         <Chat/>
+           <Waiting/>
       </div>
-    </>
+    
   )
 }
 
