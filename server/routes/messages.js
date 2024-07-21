@@ -1,9 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const pool = require('../config/database');
-const csrfProtection = require('../config/csrf');
 
-router.post('/messages', csrfProtection, async (req, res) => {
+router.post('/messages', async (req, res) => {
   const { user_id, message } = req.body;
 
   try {

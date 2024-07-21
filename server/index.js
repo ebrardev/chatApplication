@@ -2,12 +2,12 @@ const express = require('express');
 const dotenv = require('dotenv');
 const http = require("http");
 const pool = require('./config/database');
-const csrfProtection = require('./config/csrf');
+
 const cors = require('./middleware/cors');
 const cookieParser = require('./middleware/cookieParser');
 const setupSocket = require('./sockets');
 const messageRoutes = require('./routes/messages');
-const csrfRoutes = require('./routes/csrf');
+
 
 dotenv.config();
 
@@ -18,11 +18,11 @@ const server = http.createServer(app);
 app.use(cors);
 app.use(cookieParser);
 app.use(express.json());
-app.use(csrfProtection);
+
 
 // Routes
 app.use(messageRoutes);
-app.use(csrfRoutes);
+
 
 // SameSite cookies setting
 app.use((req, res, next) => {
