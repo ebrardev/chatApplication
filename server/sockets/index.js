@@ -1,4 +1,5 @@
 const { Server } = require("socket.io");
+const { Emitter } = require("@socket.io/postgres-emitter");
 
 const setupSocket = (server, pool) => {
   const io = new Server(server, {
