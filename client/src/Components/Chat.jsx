@@ -7,7 +7,7 @@ const Chat = ({ socket, username }) => {
     useEffect(() => {
         const handleMessage = (data) => {
             console.log('Message received:', data);
-            // Check if the incoming message is from the current user
+          
             if (data.username !== username) {
                 setMessageList((prev) => [...prev, data]);
             }
@@ -24,7 +24,7 @@ const Chat = ({ socket, username }) => {
         const messageContent = {
             username: username,
             message: message,
-            date: new Date().toLocaleTimeString(), // Daha okunabilir bir tarih formatı
+            date: new Date().toLocaleTimeString(), 
         };
         await socket.emit('message', messageContent);
         setMessageList((prev) => [...prev, messageContent]);

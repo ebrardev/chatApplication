@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Room = ({ username, setUsername, setChatScreen, socket }) => {
-    const ROOM = 'singleRoom'; // Tek oda adı
+    const [error, setError] = useState('');
+    const ROOM = 'singleRoom';
 
     const joinChat = () => {
-        socket.emit('room', ROOM); // Odaya katılma isteği
-        setChatScreen(true);
+        if (!username.trim()) {
+            setError('Kullanıcı adı boş olamaz.');
+            return;
+        }
+
+        socket.emit('joinRoom', { username }); 
+        socket.on('usernameTaken', (message) => {
+            setError(message);
+        });
+
+        socket.on('roomJoined', () => {
+            setChatScreen(true);
+        });
     };
 
     return (
@@ -14,11 +26,15 @@ const Room = ({ username, setUsername, setChatScreen, socket }) => {
                 <h1 className='text-center text-white my-4 font-bold text-2xl'>Welcome to chat</h1>
                 <input 
                     value={username} 
-                    onChange={e => setUsername(e.target.value)} 
+                    onChange={e => {
+                        setUsername(e.target.value);
+                        setError(''); 
+                    }} 
                     className="h-12 rounded-xl p-3 outline-none" 
                     type='text' 
                     placeholder='Username'
                 />
+                {error && <p className='text-red-500 text-center'>{error}</p>}
                 <div 
                     onClick={joinChat} 
                     className='tracking-wider hover:opacity-60 cursor-pointer bg-blue-900 text-white border h-12 pt-2 text-xl text-center rounded-xl'

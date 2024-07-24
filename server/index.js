@@ -16,21 +16,50 @@ const io = new Server(server, {
     }
 });
 
-// Tek oda ismi, sabit olacak
+
 const ROOM = 'singleRoom';
+
+
+const users = {};
 
 io.on('connection', (socket) => {
     console.log(`User Connected: ${socket.id}`);
 
-    // Kullanıcıyı varsayılan odaya kat
-    socket.join(ROOM);
+
+    socket.on('joinRoom', ({ username }) => {
+ 
+        if (Object.values(users[ROOM] || {}).includes(username)) {
+            socket.emit('usernameTaken', 'Bu kullanıcı adı zaten mevcut.');
+            return;
+        }
+
     
+        if (!users[ROOM]) {
+            users[ROOM] = {};
+        }
+        users[ROOM][socket.id] = username;
+
+    
+        socket.join(ROOM);
+        socket.emit('roomJoined', ROOM);
+        socket.broadcast.to(ROOM).emit('userJoined', username);
+    });
+
     socket.on("message", (data) => {
-        // Odaya gelen mesajları yay
+  
         io.to(ROOM).emit("messageReturn", data);
     });
 
     socket.on('disconnect', () => {
+  
+        for (const room in users) {
+            if (users[room][socket.id]) {
+                const username = users[room][socket.id];
+                delete users[room][socket.id];
+                socket.broadcast.to(room).emit('userLeft', username);
+                break;
+            }
+        }
         console.log(`User Disconnected: ${socket.id}`);
     });
 });
