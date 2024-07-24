@@ -1,41 +1,26 @@
 const express = require('express');
-const dotenv = require('dotenv');
-const http = require("http");
-const pool = require('./config/database');
-
-const cors = require('./middleware/cors');
-const cookieParser = require('./middleware/cookieParser');
-const setupSocket = require('./sockets');
-const messageRoutes = require('./routes/messages');
-
-
-dotenv.config();
+const cors = require('cors');
+const http = require('http');
+const {Server} = require('socket.io');
 
 const app = express();
+app.use(cors());
+
 const server = http.createServer(app);
 
-// Middleware
-app.use(cors);
-app.use(cookieParser);
-app.use(express.json());
-
-
-// Routes
-app.use(messageRoutes);
-
-
-// SameSite cookies setting
-app.use((req, res, next) => {
-  res.cookie('mycookie', 'cookievalue', {
-    sameSite: 'strict',
-    secure: true, 
-  });
-  next();
+const io = new Server(server, {
+    cors: {
+        origin: 'http://localhost:5173',
+        methods: ['GET', 'POST'],
+        credentials: true
+    }
 });
 
-// Setup socket.io
-setupSocket(server, pool);
+// const ROOM = 'singleRoom';
 
-server.listen(3001, () => {
-  console.log("SERVER RUNNING on port 3001");
-});
+const PORT= 5000
+
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
+}
+);

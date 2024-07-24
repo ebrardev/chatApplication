@@ -1,8 +1,4 @@
-.container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    flex-direction: column;
+.App {
+   height: 100vh;
 
   }

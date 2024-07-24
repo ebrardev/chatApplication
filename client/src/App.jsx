@@ -1,17 +1,13 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes, useNavigate } from 'react-router-dom';
-import Waiting from './Components/Waiting/Waiting';
-import Chat from './Components/Chat/Chat';
+
 import "./App.css"
+import Room from './Components/Room';
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Waiting />} />
-        <Route path="/chat" element={<Chat />} />
-      </Routes>
-    </Router>
+   <div className="App">
+    <Room/>
+   </div>
   );
 }
 
